@@ -4,7 +4,15 @@
   "description": "playwright framework using page object model",
   "main": "index.js",
   "scripts": {
-    
+    "test": "npx playwright test -j 6",
+    "test:ui": "npx playwright test --project=chromium-ui",
+    "test:api": "npx playwright test --project=api-tests",
+    "test:headed": "npx playwright test --headed",
+    "test:debug": "npx playwright test --debug",
+    "test:checkout:debug": "npx playwright test tests/ui/checkout.spec.ts --project=chromium-ui --debug",
+    "test:API:debug": "npx playwright test --project=api-tests --debug",
+    "test:report": "npx playwright show-report",
+    "test:regression": "npx playwright test --grep @smoke"
   },
   "repository": {
     "type": "git",
