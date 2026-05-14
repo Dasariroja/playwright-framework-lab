@@ -1,6 +1,6 @@
 import { test, expect } from '@playwright/test';
-import { SauceDemoPage } from './pages/saucedemo.page';
-import { CheckoutPage } from './pages/checkout.page';
+import { SauceDemoPage } from '../pages/saucedemo.page';
+import { CheckoutPage } from '../pages/checkout.page';
 import { CHECKOUT_URL, INVENTORY_URL } from '../../test-settings';
 import { customerDetails } from '../../test-data';
 

@@ -1,10 +1,6 @@
-import { Page, Locator } from '@playwright/test';
+import { Page, Locator, expect } from '@playwright/test';
 import { BasePage } from './base.page';
 
-/**
- * SauceDemo Page Object
- * Implements the Page Object Model for the SauceDemo e-commerce site
- */
 export class SauceDemoPage extends BasePage {
   // Locators
   private readonly usernameInput: Locator;
@@ -20,6 +16,7 @@ export class SauceDemoPage extends BasePage {
   private readonly addToCartButtons: Locator;
   private readonly summaryTotal: Locator;
   private readonly finishButton: Locator;
+  readonly productSortContainer: Locator;
 
   constructor(page: Page) {
     super(page, '/');
@@ -37,7 +34,7 @@ export class SauceDemoPage extends BasePage {
     this.addToCartButtons = page.locator('button[id*="add-to-cart"]');
     this.summaryTotal = page.locator('[data-test="total-label"]');
     this.finishButton = page.getByRole('button', { name: 'Finish' });
-
+    this.productSortContainer = page.locator('[data-test="product-sort-container"]');
   }
 
   /**
@@ -98,6 +95,10 @@ export class SauceDemoPage extends BasePage {
     return names;
   }
 
+  async sortProductsHighToLow(): Promise<void> {
+    await this.productSortContainer.selectOption({ index: 3 }); // Select "Price (high to low)"
+  }
+
   /**
    * Add the first product to cart
    */
@@ -109,6 +110,11 @@ export class SauceDemoPage extends BasePage {
   async addSecondProductToCart(): Promise<void> {
     await this.waitForElement(this.addToCartButtons.nth(1));
     await this.clickWithRetry(this.addToCartButtons.nth(1));
+  }
+
+  async addLastProductToCart(): Promise<void> {
+    await this.waitForElement(this.addToCartButtons.last());
+    await this.clickWithRetry(this.addToCartButtons.last());
   }
 
   /**

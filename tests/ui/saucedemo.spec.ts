@@ -1,5 +1,5 @@
 import { test, expect } from '@playwright/test';
-import { SauceDemoPage } from './pages/saucedemo.page';
+import { SauceDemoPage } from '../pages/saucedemo.page';
 import { customerDetails } from '../../test-data';
 
 test.describe('SauceDemo E-commerce Tests @ui', () => {

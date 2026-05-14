@@ -17,9 +17,7 @@ export abstract class BasePage {
    * Navigate to the page
    */
   async navigate(): Promise<void> {
-    if (this.url) {
-      await this.page.goto(this.url);
-    }
+      await this.page.goto('/');
   }
 
   /**
