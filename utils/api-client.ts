@@ -1,8 +1,5 @@
 import { APIRequestContext, APIResponse, request } from '@playwright/test';
 
-/**
- * API client wrapper using Playwright's built-in APIRequestContext
- */
 export class ApiClient {
   private context: APIRequestContext | null = null;
   private baseURL: string;
@@ -11,9 +8,6 @@ export class ApiClient {
     this.baseURL = baseURL;
   }
 
-  /**
-   * Initialise the API request context
-   */
   async init(): Promise<void> {
     if (!this.context) {
       this.context = await request.newContext({
@@ -26,9 +20,6 @@ export class ApiClient {
     }
   }
 
-  /**
-   * Dispose of the API request context
-   */
   async dispose(): Promise<void> {
     if (this.context) {
       await this.context.dispose();
@@ -36,9 +27,6 @@ export class ApiClient {
     }
   }
 
-  /**
-   * Send a GET request
-   */
   async get(
     url: string,
     options: {

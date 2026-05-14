@@ -1,23 +1,16 @@
+import dotenv from 'dotenv';
+dotenv.config();
+
 import { defineConfig, devices } from '@playwright/test';
 
 
-/**
- * Playwright Configuration
- * @see https://playwright.dev/docs/test-configuration
- */
 export default defineConfig({
   testDir: './tests',
-
   fullyParallel: true,
-
   forbidOnly: !!process.env.CI,
-
   retries: process.env.CI ? 2 : 0,
-
   workers: process.env.CI ? 1 : undefined,
-
   timeout: parseInt(process.env.DEFAULT_TIMEOUT || '30000'),
-
   expect: {
     timeout: 10000,
   },
@@ -26,7 +19,6 @@ export default defineConfig({
     ['html', { open: 'never' }],
     ['list'],
   ],
-
   use: {
     baseURL: process.env.BASE_URL,
     headless: process.env.HEADLESS !== 'false',
